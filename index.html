@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextLevel | Justice Johnson 2027</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --primary-blue: #00171f; --accent-blue: #00a8e8; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
+        .blue-gradient { background: linear-gradient(135deg, #00171f 0%, #003459 100%); }
+        .fav-active { color: #facc15 !important; fill: #facc15; }
+        .sent-indicator { border-left: 8px solid #22c55e !important; }
+        .log-text { font-size: 10px; color: #64748b; font-weight: 600; }
+        @keyframes pulse-blue { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .tracking-pulse { animation: pulse-blue 2s infinite; }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-900 font-sans leading-tight pb-20">
+
+    <nav class="blue-gradient py-5 px-8 flex justify-between items-center sticky top-0 z-50 shadow-2xl border-b-2 border-sky-400/30">
+        <div class="flex items-center gap-4">
+            <div class="bg-sky-400 text-white p-2 rounded-lg font-black italic text-xl">NL</div>
+            <div>
+                <h1 class="text-2xl font-black text-white tracking-tighter uppercase italic leading-none">NextLevel</h1>
+                <p class="text-[9px] text-sky-300 font-bold tracking-[0.3em] uppercase mt-1">Recruitment Intel • USA Master Engine</p>
+            </div>
+        </div>
+        <button onclick="toggleFavoritesFilter()" id="favFilterBtn" class="text-[10px] font-black text-white border border-sky-500/50 px-4 py-2 rounded-full hover:bg-sky-500/20 transition uppercase">⭐ Favorites</button>
+    </nav>
+
+    <main class="max-w-[1600px] mx-auto p-4 lg:p-10">
+        <div class="grid lg:grid-cols-12 gap-10">
+            <div class="lg:col-span-4 space-y-6">
+                <section class="bg-white p-8 rounded-[2.5rem] border border-sky-100 shadow-xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-black text-slate-800 tracking-tighter uppercase italic">Target List</h2>
+                        <span id="selCount" class="text-xs bg-sky-600 text-white font-black px-4 py-1.5 rounded-full shadow-lg">0 SELECTED</span>
+                    </div>
+                    <input type="text" id="search" onkeyup="filterSchools()" placeholder="Search State, School, or Region..." class="w-full p-5 bg-sky-50 border border-sky-100 rounded-2xl outline-none focus:ring-4 focus:ring-sky-500/20 focus:border-sky-500 transition-all font-bold text-sm mb-6">
+                    <div id="list" class="space-y-2 max-h-[600px] overflow-y-auto pr-3 custom-scrollbar"></div>
+                    <button onclick="generateCampaign()" class="w-full bg-sky-600 text-white font-black py-6 rounded-3xl hover:bg-sky-700 shadow-2xl transition-all mt-8 text-lg uppercase tracking-widest border-b-8 border-sky-900 active:translate-y-1 active:border-b-0">Prepare My Campaign</button>
+                </section>
+            </div>
+
+            <div class="lg:col-span-8">
+                <div id="feed" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="col-span-full text-center py-40 border-4 border-dotted border-sky-200 rounded-[4rem] text-sky-300 bg-white">
+                        <p class="font-black text-7xl mb-4 opacity-10 uppercase tracking-widest">NEXT LEVEL</p>
+                        <p class="text-sm font-bold uppercase tracking-[0.5em] opacity-50">Select programs to begin outreach</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-20 grid md:grid-cols-2 gap-10">
+            <section class="bg-slate-900 rounded-[3rem] p-10 text-white shadow-2xl border-t-4 border-sky-500">
+                <h2 class="text-3xl font-black italic uppercase tracking-tighter mb-8 text-sky-400">2026 Recruitment Roadmap</h2>
+                <div class="space-y-8">
+                    <div class="bg-slate-800 p-6 rounded-2xl border-l-4 border-sky-500">
+                        <h3 class="font-bold text-xl mb-3 text-sky-300 underline underline-offset-4">Spring (March - May)</h3>
+                        <ul class="text-sm text-slate-400 space-y-2 font-medium">
+                            <li>• Send AAU schedules to your 'Favorites' by March 1st.</li>
+                            <li>• Weekly Twitter/X updates of lockdown defensive clips.</li>
+                            <li>• Reach out to 15+ new schools every 2 weeks.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-2xl border-l-4 border-sky-500">
+                        <h3 class="font-bold text-xl mb-3 text-sky-300 underline underline-offset-4">June 15th Contact Date</h3>
+                        <p class="text-xs text-sky-400 mb-3 font-bold uppercase tracking-widest tracking-pulse">NCAA Direct Contact Opens</p>
+                        <ul class="text-sm text-slate-400 space-y-2 font-medium">
+                            <li>• Coaches can officially call and text you directly.</li>
+                            <li>• Keep your phone charged and respond within 2 hours.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-10 rounded-[3rem] border border-sky-100 shadow-xl">
+                <h2 class="text-3xl font-black italic uppercase tracking-tighter mb-8 text-sky-900">Campus Visit Checklist</h2>
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="bg-sky-50 p-6 rounded-2xl border-l-4 border-sky-600">
+                        <h3 class="font-bold text-sky-900 mb-2 uppercase text-sm">During Practice</h3>
+                        <p class="text-sm text-sky-700 leading-relaxed">Observe coach-player energy. How does the coach correct mistakes? How do bench players react to teammates' success?</p>
+                    </div>
+                    <div class="bg-sky-50 p-6 rounded-2xl border-l-4 border-sky-600">
+                        <h3 class="font-bold text-sky-900 mb-2 uppercase text-sm">Key Questions</h3>
+                        <p class="text-sm text-sky-700 italic leading-relaxed">"Where do you see me fitting in your defensive scheme?" & "How many guards are you recruiting for the 2027 class?"</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // EXPANDED DATABASE: Integration of your regional school list
+        const COLLEGES = [
+            // NJ/PA/MD/NY (The Atlantic Block)
+            { id: 1, name: "Albright", state: "PA", coach: "Rick Ferry", email: "rferry@albright.edu", style: "tough MAC-Commonwealth defensive play" },
+            { id: 2, name: "Arcadia", state: "PA", coach: "Adam Van Zelst", email: "vanzelsta@arcadia.edu", style: "efficient offensive execution" },
+            { id: 3, name: "Cabrini", state: "PA", coach: "Tim McDonald", email: "basketball@cabrini.edu", style: "high-energy transition style" },
+            { id: 4, name: "Cairn", state: "PA", coach: "Jason O'Connell", email: "joconnell@cairn.edu", style: "defensive pressure and grit" },
+            { id: 5, name: "Centenary", state: "NJ", coach: "Chris Dorsey", email: "cdorsey@centenary.edu", style: "balanced play and rotations" },
+            { id: 6, name: "Drew", state: "NJ", coach: "Michael Rejniak", email: "mrejniak@drew.edu", style: "disciplined Landmark identity" },
+            { id: 7, name: "Elizabethtown", state: "PA", coach: "Britt Moore", email: "mooreb@etown.edu", style: "rugged interior play" },
+            { id: 8, name: "Kean", state: "NJ", coach: "David Turco", email: "dturco@kean.edu", style: "elite NJAC defensive intensity" },
+            { id: 9, name: "Rowan", state: "NJ", coach: "Eric Dickson", email: "dicksone@rowan.edu", style: "fast-paced NJAC scoring" },
+            { id: 10, name: "TCNJ", state: "NJ", coach: "Matt Goldsmith", email: "goldsmim@tcnj.edu", style: "disciplined execution" },
+            { id: 11, name: "Yeshiva", state: "NY", coach: "Elliot Steinmetz", email: "steinmet@yu.edu", style: "unrivaled offensive flow" },
+            { id: 12, name: "Rochester", state: "NY", coach: "Ryan Cain", email: "rcain@jhu.edu", style: "academic rigor and tactical basketball" },
+
+            // MA/CT/ME/VT/RI (New England)
+            { id: 13, name: "Amherst", state: "MA", coach: "Marlon Sears", email: "msears@amherst.edu", style: "elite NESCAC defensive culture" },
+            { id: 14, name: "Williams", state: "MA", coach: "Kevin App", email: "kapp@williams.edu", style: "prestigious NESCAC motion offense" },
+            { id: 15, name: "Endicott", state: "MA", coach: "Kevin Bettencourt", email: "kbettenc@endicott.edu", style: "high-octane NEWMAC offense" },
+            { id: 16, name: "Tufts", state: "MA", coach: "Brandon Linton", email: "brandon.linton@tufts.edu", style: "smart spacing and tactical play" },
+            { id: 17, name: "Wesleyan", state: "CT", coach: "Joe Reilly", email: "jreilly@wesleyan.edu", style: "versatile guard-led offense" },
+            { id: 18, name: "Trinity", state: "CT", coach: "James Cosgrove", email: "james.cosgrove@trincoll.edu", style: "hard-nosed defensive identity" },
+
+            // OH/MI/IN/IL/WI (Midwest)
+            { id: 19, name: "Augustana", state: "IL", coach: "Tom Jessee", email: "thomasjessee@augustana.edu", style: "storied CCIW winning culture" },
+            { id: 20, name: "Case Western", state: "OH", coach: "Todd McGuinness", email: "txm293@case.edu", style: "analytical offensive approach" },
+            { id: 21, name: "Illinois Wesleyan", state: "IL", coach: "Ron Rose", email: "rrose@iwu.edu", style: "elite transition offense" },
+            { id: 22, name: "Grace", state: "IN", coach: "Scott Moore", email: "moores@grace.edu", style: "selfless ball-sharing culture" },
+            { id: 23, name: "Trine", state: "IN", coach: "Brooks Miller", email: "millerb@trine.edu", style: "championship-level physicality" },
+            { id: 24, name: "Indiana Wesleyan", state: "IN", coach: "Greg Tonagel", email: "greg.tonagel@indwes.edu", style: "character-driven winning culture" },
+
+            // VA/TX/CA (South & West)
+            { id: 25, name: "Randolph-Macon", state: "VA", coach: "Josh Merkel", email: "joshmerkel@rmc.edu", style: "gold-standard defensive discipline" },
+            { id: 26, name: "Emory", state: "GA", coach: "Jason Zimmerman", email: "jzimme4@emory.edu", style: "high-IQ guard play and reach" },
+            { id: 27, name: "UNT Dallas", state: "TX", coach: "Joshua Howard", email: "athletics@untdallas.edu", style: "pro-level development" },
+            { id: 28, name: "St. Thomas (TX)", state: "TX", coach: "Anthony Medina", email: "medinaa@stthom.edu", style: "high-intensity defensive pressure" },
+            { id: 29, name: "Pomona-Pitzer", state: "CA", coach: "Charles Katsiaficas", email: "ckatsiaf@pomona.edu", style: "academic world-standing and SCIAC play" },
+            { id: 30, name: "Hope International", state: "CA", coach: "Bill Czech", email: "wjczech@hiu.edu", style: "West Coast transition game" },
+            
+            // NAIA Clusters
+            { id: 31, name: "Freed-Hardeman", state: "TN", coach: "Drew Stutts", email: "dstutts@fhu.edu", style: "defensive connectivity" },
+            { id: 32, name: "Langston", state: "OK", coach: "Chris Wright", email: "christopher.wright@langston.edu", style: "smothering defensive identity" },
+            { id: 33, name: "Georgetown (KY)", state: "KY", coach: "Chris Briggs", email: "christopher_briggs@georgetowncollege.edu", style: "legendary pro-style guards" }
+            // Add remaining schools here in the same pattern
+        ];
+
+        let favorites = JSON.parse(localStorage.getItem('nextLevelFavs')) || [];
+        let contactLog = JSON.parse(localStorage.getItem('nextLevelLog')) || {};
+        let showingFavorites = false;
+
+        function renderList() {
+            const list = document.getElementById('list');
+            const data = showingFavorites ? COLLEGES.filter(c => favorites.includes(c.id)) : COLLEGES;
+            list.innerHTML = data.sort((a,b) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name)).map(c => {
+                const lastSent = contactLog[c.id] ? new Date(contactLog[c.id]).toLocaleDateString() : 'Never';
+                const isSentRecently = contactLog[c.id] && (Date.now() - contactLog[c.id] < 1209600000);
+                return `<label class="flex items-center p-4 bg-white rounded-2xl cursor-pointer hover:bg-sky-50 transition border border-slate-100 hover:border-sky-300 ${isSentRecently ? 'sent-indicator' : ''}">
+                    <input type="checkbox" value="${c.id}" onchange="updateCount()" class="check w-6 h-6 accent-sky-600 mr-4">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-0.5"><p class="text-[13px] font-bold text-slate-800">${c.name}</p><span class="text-[8px] bg-sky-100 text-sky-700 px-1.5 py-0.5 rounded font-black">${c.state}</span></div>
+                        <p class="text-[9px] text-slate-400 uppercase font-black">Coach ${c.coach}</p>
+                        <p class="log-text italic uppercase mt-1">Last Outbound: ${lastSent}</p>
+                    </div>
+                    <button onclick="toggleFav(event, ${c.id})" class="ml-2 text-slate-300 hover:text-yellow-400 transition"><svg class="w-5 h-5 ${favorites.includes(c.id) ? 'fav-active' : ''}" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></button></label>`;
+            }).join('');
+        }
+
+        function toggleFav(e, id) { e.preventDefault(); const idx = favorites.indexOf(id); if(idx > -1) favorites.splice(idx,1); else favorites.push(id); localStorage.setItem('nextLevelFavs', JSON.stringify(favorites)); renderList(); }
+        function logContact(id) { contactLog[id] = Date.now(); localStorage.setItem('nextLevelLog', JSON.stringify(contactLog)); renderList(); }
+        function toggleFavoritesFilter() { showingFavorites = !showingFavorites; document.getElementById('favFilterBtn').innerText = showingFavorites ? "✨ All Schools" : "⭐ Favorites"; renderList(); }
+        function updateCount() { document.getElementById('selCount').innerText = `${document.querySelectorAll('.check:checked').length} SELECTED`; }
+        function filterSchools() { const val = document.getElementById('search').value.toLowerCase(); document.querySelectorAll('#list label').forEach(el => el.style.display = el.innerText.toLowerCase().includes(val) ? 'flex' : 'none'); }
+
+        function generateCampaign() {
+            const selectedIds = Array.from(document.querySelectorAll('.check:checked')).map(cb => parseInt(cb.value));
+            const checked = COLLEGES.filter(c => selectedIds.includes(c.id));
+            const feed = document.getElementById('feed');
+            if(checked.length === 0) return alert("Select programs to begin.");
+            feed.innerHTML = "";
+            checked.forEach(s => {
+                const subject = `Justice Johnson | 6'3 Guard | Class of 2027 | Defensive Guard`;
+                const coachLast = s.coach.split(' ').pop();
+                const body = `Dear Coach ${coachLast},\n\nMy name is Justice Johnson. I am a 6'3 guard in the Class of 2027. I attend Woodrow Wilson High School in Dallas, Texas. I am very interested in the men’s basketball program at ${s.name}.\n\nI have been following your program's performance this season and specifically your ${s.style}. I believe my defensive connectivity and grit fit your system well. I take pride in "stops" and competing on every possession over individual stats.\n\nI was curious, what specific attributes are you looking for in your 2027 guard recruits? I want to make sure I am working on the right skills to fit your culture.\n\nStats: 8 PPG, 3 APG, 3.5 RPG\nHighlight: http://www.hudl.com/v/2TeKZ0\n\nSincerely,\nJustice Johnson\nDallas, TX | 682-340-2540`;
+                const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${s.email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const xDM = `https://twitter.com/messages/compose?text=${encodeURIComponent("Coach " + coachLast + ", Justice Johnson (2027 6'3 Guard) reaching out. Sent film - would love to hear your thoughts on my defensive game! http://www.hudl.com/v/2TeKZ0")}`;
+                feed.innerHTML += `<div class="bg-white p-6 rounded-[2.5rem] border-2 border-sky-100 shadow-lg flex flex-col justify-between animate-in fade-in slide-in-from-bottom-2 duration-300 gap-4 group">
+                    <div class="text-center w-full"><h3 class="font-black text-sky-900 text-xl uppercase italic mb-1 group-hover:text-sky-500 transition-colors">${s.name}</h3><p class="text-[9px] text-sky-400 font-bold uppercase tracking-widest">Coach ${s.coach}</p></div>
+                    <div class="flex flex-col gap-2"><a href="${gmail}" target="_blank" onclick="logContact(${s.id}); this.parentElement.parentElement.classList.add('opacity-40')" class="w-full bg-sky-900 text-white text-[11px] font-black py-4 rounded-xl hover:bg-sky-500 transition-all uppercase text-center border-b-4 border-sky-950">Email Coach</a>
+                    <a href="${xDM}" target="_blank" class="w-full bg-black text-white text-[11px] font-black py-4 rounded-xl hover:bg-slate-800 transition-all uppercase text-center flex items-center justify-center gap-2">Send X DM</a></div></div>`;
+            });
+        }
+        renderList();
+    </script>
+</body>
+</html>
